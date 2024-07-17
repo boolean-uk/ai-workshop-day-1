@@ -68,4 +68,4 @@ You can open up a bigger dialog which will show you more options for you to choo
 
 ![Suggestions tab opened](assets/suggestions-tab.png)
 
-You can also accept partial completion of the suggestions by accepting just the word your cursor is indicating. The button for this is in the same dialog we opened previously 
+You can also accept partial completion of the suggestions by accepting just the word your cursor is indicating. The button for this is in the same dialog we opened previously when we hovered the mouse over the suggestion.
