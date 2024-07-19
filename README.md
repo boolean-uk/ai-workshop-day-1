@@ -70,6 +70,55 @@ You can open up a bigger dialog which will show you more options for you to choo
 
 You can also accept partial completion of the suggestions by accepting just the word your cursor is indicating. The button for this is in the same dialog we opened previously when we hovered the mouse over the suggestion.
 
+We can also supply information to Copilot via comments as natural language which Copilot will then attempt to generate code for. Try the following:
+
+```javascript
+// Write a function to get a 
+// number from the user 
+// it will return triple the 
+// number plus one
+```
+
+If a suggestion doesn't appear when you initially type the comment, try adding at least one empty line after the comment and see if that triggers it. From there choosing and accepting the appropriate code suggestion is the same as before.
+
 #### Task
 
-Play with the prompts for a while and see what you can get them to do, we'll look at some more complex interactions shortly.
+Play with the prompts for a while and see what you can get them to do, we'll look at some more complex interactions shortly. Have a look at some of our previous exercises and see if you can use Copilot to create the solutions, for this attempt try to do it by just generating each function separately as you go.
+
+### More Complex Interactions with Copilot
+
+With your JS file open and in focus, type `Ctrl-I` to open a dialog box like the following:
+
+![Copilot interactive box](assets/control-i.png)
+
+Typing a `/` into the box will bring up a number of command options:
+
+![Command options](assets/commands.png)
+
+Let's take a look at some simple versions of these commands. If I have the following code:
+
+```javascript
+function greeting(firstName, secondName) {
+  console.log(`Hello ${firstName} ${secondName}`);
+}
+```
+Then placing the cursor anywhere inside the function and doing `Ctrl-I` followed by `/doc` generates the following:
+
+![Example documentation string](assets/doc-string.png)
+
+and accepting it, places the comment at the beginning. If there were problems with the content I could either modify it via Copilot itself or manually go in and edit the comment afterwards.
+
+```javascript
+/**
+ * Prints a greeting message with the provided first and second names.
+ *
+ * @param {string} firstName - The first name.
+ * @param {string} secondName - The second name.
+ * @returns {void}
+ */
+function greeting(firstName, secondName) {
+  console.log(`Hello ${firstName} ${secondName}`);
+}
+```
+
+Doing the same but choosing the `/explain` optioin will produce a dialog with a reasonably detailed explanation of what the code is doing. The content of this could be copied and pasted somewhere useful, and again can be tweaked using the Copilot prompt.
