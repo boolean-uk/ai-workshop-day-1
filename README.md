@@ -102,6 +102,7 @@ function greeting(firstName, secondName) {
   console.log(`Hello ${firstName} ${secondName}`);
 }
 ```
+
 Then placing the cursor anywhere inside the function and doing `Ctrl-I` followed by `/doc` generates the following:
 
 ![Example documentation string](assets/doc-string.png)
@@ -121,4 +122,60 @@ function greeting(firstName, secondName) {
 }
 ```
 
-Doing the same but choosing the `/explain` optioin will produce a dialog with a reasonably detailed explanation of what the code is doing. The content of this could be copied and pasted somewhere useful, and again can be tweaked using the Copilot prompt.
+Doing the same but choosing the `/explain` option will produce a dialog with a reasonably detailed explanation of what the code is doing. The content of this could be copied and pasted somewhere useful, and again can be tweaked using the Copilot prompt. The dialog that appears also has an option to open the text in the chat tab and a reload button. If the explanation doesn't quite have enough information in it then you can try reloading it to get a different/better one.
+
+If I change the code so that it now reads:
+
+```javascript
+function greeting(firstName, secondName) {
+  console.log('Hello ${firstName} ${secondName}');
+}
+```
+
+Then although the code will run when the function is called, it won't interpolate the values of `firstName` and `secondName` into the string which is output. This is because the quote marks have changed from back-ticks to single quotes. The code that is there is valid JavaScript and will not trigger an error, but it is not what the programmer intended. Copilot can help detect this subtle bug in your code (as well as fixing more straightforward syntax errors etc), make sure the cursor is inside the function definition and do `Ctrl-I` to bring up the prompt. This time type `/fix` and then check the resulting dialog.
+
+![Fix for logic error](assets/simple-fix.png)
+
+You can choose to ignore or accept the fix and your code will be updated accordingly, you can also reload the fix in the event that it doesn't address your concern.
+
+The fourth command option is to add tests to the existing code, let's try that now with the same greeting function, first of all make sure the previous subtle error has been corrected and then try running the `/tests` command after doing `Ctrl-I`. This will produce a new test file (in my case it was called `hello.test.js` to match the file being called `hello.js`) which has 3 tests in it. Each of these tests has comments to explain what the resulting effect should be when the function is called with the given parameters. These tests are not set up to use a testing framework like the ones we have done during the exercises and they won't be autorun by a test runner.
+
+```javascript
+// Test case 1: firstName and secondName are both provided
+greeting("John", "Doe"); // Output: Hello John Doe
+
+// Test case 2: firstName is provided, but secondName is not
+greeting("Jane"); // Output: Hello Jane undefined
+
+// Test case 3: Neither firstName nor secondName are provided
+greeting(); // Output: Hello undefined undefined
+```
+
+Let's check what happens if we have a function that returns a value rather than just outputting on to the Console. Delete the previous function (and the test file that went with it) and add a simple one to return the sum of the two values passed as arguments to the function, as follows:
+
+```javascript
+function sum(a, b) {
+  return a + b;
+}
+```
+
+then run the command to generate tests again. In my case it gave me this:
+
+```javascript
+// Test case 1: Positive numbers
+console.log(sum(2, 3)); // Expected output: 5
+
+// Test case 2: Negative numbers
+console.log(sum(-5, -7)); // Expected output: -12
+
+// Test case 3: Zero
+console.log(sum(0, 10)); // Expected output: 10
+
+// Test case 4: Decimal numbers
+console.log(sum(1.5, 2.5)); // Expected output: 4
+
+// Test case 5: Large numbers
+console.log(sum(1000000, 2000000)); // Expected output: 3000000
+```
+
+We'll come back and revisit testing later to see how easily we can generate some automated unit tests using a framework.
