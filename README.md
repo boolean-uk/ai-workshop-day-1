@@ -179,3 +179,110 @@ console.log(sum(1000000, 2000000)); // Expected output: 3000000
 ```
 
 We'll come back and revisit testing later to see how easily we can generate some automated unit tests using a framework.
+
+### Using the Copilot Chat
+
+As well as interacting with Copilot via the Editor Window there is also a new Chat icon on the left which opens up a window where you can "chat" with Copilot in order to generate code according to your ideas. I tried the following prompts:
+
+```Copilot
+Create javascript for a 10 question multiple choice quiz. 
+```
+
+This generated code for a 10 question multiple choice quiz but by defining a Question  class, 10 instances of those questions and then code to manage that. After reading through the code I then added a second request to the Chat, without adding anything else in between:
+
+```Copilot
+Make it without classes
+```
+
+which generated the following:
+
+```javascript
+// Initialize quiz questions without using classes
+const questions = [
+  { text: "What is the capital of France?", options: ["A: Paris", "B: London", "C: Berlin", "D: Madrid"], answer: "A" },
+  { text: "What is 2 + 2?", options: ["A: 3", "B: 4", "C: 5", "D: 6"], answer: "B" },
+  { text: "Who wrote 'Hamlet'?", options: ["A: Dickens", "B: Shakespeare", "C: Hemingway", "D: Austen"], answer: "B" },
+  { text: "What is the largest ocean?", options: ["A: Atlantic", "B: Indian", "C: Arctic", "D: Pacific"], answer: "D" },
+  { text: "What is the capital of Japan?", options: ["A: Beijing", "B: Seoul", "C: Tokyo", "D: Bangkok"], answer: "C" },
+  { text: "What is the speed of light?", options: ["A: 300,000 km/s", "B: 150,000 km/s", "C: 450,000 km/s", "D: 600,000 km/s"], answer: "A" },
+  { text: "Who discovered penicillin?", options: ["A: Marie Curie", "B: Alexander Fleming", "C: Nikola Tesla", "D: Albert Einstein"], answer: "B" },
+  { text: "What is the chemical symbol for gold?", options: ["A: Au", "B: Ag", "C: Fe", "D: O"], answer: "A" },
+  { text: "Who painted the Mona Lisa?", options: ["A: Vincent Van Gogh", "B: Leonardo da Vinci", "C: Pablo Picasso", "D: Claude Monet"], answer: "B" },
+  { text: "What is the hardest natural substance on Earth?", options: ["A: Gold", "B: Iron", "C: Diamond", "D: Quartz"], answer: "C" }
+];
+
+// Function to start the quiz
+function startQuiz(questions) {
+  let score = 0;
+
+  // Loop through each question
+  questions.forEach(question => {
+    // Display question and options
+    console.log(question.text);
+    question.options.forEach(option => console.log(option));
+
+    // Simulate user input for demonstration (replace with actual user input mechanism)
+    const userInput = prompt(question.text + "\n" + question.options.join("\n"));
+
+    // Check if the answer is correct
+    if (question.answer === userInput.trim().toUpperCase()) {
+      console.log("Correct!");
+      score++;
+    } else {
+      console.log("Wrong answer!");
+    }
+  });
+
+  // Display final score
+  console.log(`Quiz completed! Your score is ${score}/${questions.length}.`);
+}
+
+// Uncomment the line below to start the quiz
+// startQuiz(questions);
+```
+
+There is an option at the top of the response to insert this code into a new file which I recommend trying.
+
+#### Tasks
+
+See what other things you can get it to produce. Can you get it to tell you jokes?
+
+### Looking at Existing Exercises
+
+Have a look at the JS Fundamentals Functions 1 Exercise here: [https://github.com/boolean-uk/js-fundamentals-functions-1](https://github.com/boolean-uk/js-fundamentals-functions-1)
+
+If you already have a Fork of it, then Fork it under a new name into your GitHub account, if you don't then just make a Fork as normal.
+
+Clone the newly Forked project and then open the repo in VS Code as normal. If you open the Chat tab and ask it to `/explain` the `@workspace` it will talk about the various tools that are installed as part of the project. I tried both of the following prompts in the Chat window and got very generic responses:
+
+```Copilot
+Create code in src/calling-functions.js to pass the tests in spec/calling-functions.spec.js
+```
+
+and
+
+```Copilot
+Create code in src/creating-functions.js to pass the tests in spec/creating-functions.spec.js
+```
+
+To be fair the information given would probably help, someone who was stuck, but it definitely doesn't create a solution.
+
+If however I go to the Chat window and click on the paperclip icon it gives me the option to attach a file to the prompt I pass to Copilot. Clicking on `creating-functions.js` to attach it and then typing `Solve these` as the prompt generates code that will solve that exercise, doing the same with `calling-functions.js` gives me a solution for that. Copying and pasting these solutions into the appropriate files allows me to make all of the tests pass.
+
+### Open Ended Tasks
+
+Let's try this with something more open-ended like the JavaScript FizzBuzz Challenge: [https://github.com/boolean-uk/js-fizzbuzz](https://github.com/boolean-uk/js-fizzbuzz)
+
+Fork and Clone the repository with a new name if you already have a copy and see if you can create a solution that works just by using the Readme file.
+
+Experiment with some of the other exercises we've worked on.
+
+### Tests
+
+The Framework we've been using to test our JavaScript code is called Jasmine, we can use Copilot to generate the tests for us too (this breaks the cardinal rule of Test Driven Development in that tests should be written before code to make them pass!). With the FizzBuzz code, once you have a working solution to it, try attaching the solution to the Copilot Chat and then ask Copilot to:
+
+```Copilot
+Create Jasmine based tests to test this file
+```
+
+and check out the result. To me the results are less broad than the original tests, but they cover many of the functionalities that we need to include.
