@@ -279,7 +279,7 @@ Experiment with some of the other exercises we've worked on.
 
 ### Tests
 
-The Framework we've been using to test our JavaScript code is called Jasmine, we can use Copilot to generate the tests for us too (this breaks the cardinal rule of Test Driven Development in that tests should be written before code to make them pass!). With the FizzBuzz code, once you have a working solution to it, try attaching the solution to the Copilot Chat and then ask Copilot to:
+The Framework we've been using to test our JavaScript code is called Jasmine, we can use Copilot to generate the tests for us too (this breaks the cardinal rule of Test Driven Development in that tests should be written before code in order to make them pass!). With the FizzBuzz code, once you have a working solution to it, try attaching the solution to the Copilot Chat and then ask Copilot to:
 
 ```Copilot
 Create Jasmine based tests to test this file
