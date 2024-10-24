@@ -8,9 +8,6 @@
 - Learn how to create React Projects to solve specific problems using Copilot
 - Learn to use Copilot to summarise React Projects
 
-### LLMs and Other AI Tools
-
-### Using AI in Personal and Professional Projects
 
 ### Getting Started with GitHub Copilot in VS Code
 
